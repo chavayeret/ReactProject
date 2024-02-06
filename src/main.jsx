@@ -4,11 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import BusinessData from './components/businessData/BusinessData.jsx';
 import Login from './components/admin/Login.jsx';
 import './index.css'
-import EditBusinessData from './components/businessData/BusinessData.jsx';
+
 import ServiceList from './components/service/ServicesList.jsx';
 import AddMeeting from './components/meeting/AddMeeting.jsx';
-import App from './App.jsx';
-
 
 
 const Router=()=>{
@@ -23,18 +21,18 @@ const Router=()=>{
       errorElement: <div><h1>error</h1><h2>404 Not define</h2></div> ,
     },
     {
-      path: '/admin',
-      element: <Login />
-
+      path: "/admin",
+      element: <Login />,
+      errorElement: <div><h1>error</h1><h2>404 Not define</h2></div>,
     },
   ]);
   return(
  
- ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <RouterProvider router={router}/>
-    </React.StrictMode>
-  )
+    ReactDOM.createRoot(document.getElementById('root')).render(
+       <React.StrictMode>
+          <RouterProvider router={router}/>
+       </React.StrictMode>
+    )
   );
- };
+};
  export default Router;

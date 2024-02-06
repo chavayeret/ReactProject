@@ -1,4 +1,4 @@
-import AddService from "./AddService";
+
 
 function ServicesList() {
     fetch('https://localhost:8787/services')
