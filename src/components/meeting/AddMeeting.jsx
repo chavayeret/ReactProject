@@ -17,8 +17,9 @@ async function AddMeeting() {
     }
     return (
       <>
-      <MeetingList/>
-      <button onClick={<Meeting/>}>קבע פגישה</button>
+      dataStore.isLogin?
+      <MeetingList/>:
+      <button onClick={<Meeting/>}>קבע פגישה</button>;
       </>
     )
   

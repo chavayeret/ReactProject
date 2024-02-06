@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import BusinessData from './components/businessData/BusinessData.jsx';
 import Login from './components/admin/Login.jsx';
 import './index.css'
-import EditBusinessData from './components/businessData/EditBusinessData.jsx';
+import EditBusinessData from './components/businessData/BusinessData.jsx';
 import ServiceList from './components/service/ServicesList.jsx';
 import AddMeeting from './components/meeting/AddMeeting.jsx';
 import App from './App.jsx';
