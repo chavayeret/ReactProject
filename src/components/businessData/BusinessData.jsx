@@ -1,6 +1,6 @@
 import EditBusinessData from "./BusinessData"
 
-async function BusinessData(_event) {
+async function BusinessData(_business) {
    
     try{
       const response=await fetch('https://localhost:8787/BusinessData',{

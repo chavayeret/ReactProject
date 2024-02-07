@@ -2,7 +2,7 @@
 import Service from "./Service"
 import ServicesList from "./ServicesList";
 
-async function AddService() {
+async function AddService(service) {
     try{
       const response=await fetch('https://localhost:8787/service',{
         method:'Post',

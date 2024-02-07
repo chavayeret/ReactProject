@@ -2,7 +2,7 @@ import Meeting from "./Meeting";
 import MeetingList from "./MeetingList";
 
 
-async function AddMeeting() {
+async function AddMeeting(meeting) {
     
     try{
       const response=await fetch('https://localhost:8787/appointment',{

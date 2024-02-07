@@ -1,4 +1,5 @@
 import axios from "axios";
+import Login from "../components/admin/Login";
 import dataStore from "./dataStore";
 
 export async function CheckLogin(name, password) {
@@ -11,6 +12,8 @@ export async function CheckLogin(name, password) {
     catch (e) {
         if (e.response) {
             alert('user name or password not correct');
+            setName('')
+            setPassword('')  
         }
         else {
             alert('server failed');

@@ -7,7 +7,8 @@ function ServicesList() {
          .catch(error => console.error('Error:', error));
     return (
       <>
-      {dataService}
+      {dataService.name}
+      {dataService.response.price}
       
       </>
     )

@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
+import {Observer } from "mobx-react";
 import BusinessData from "./BusinessData";
 
-function EditBusinessData() {
+
+const EditBusinessData=(Observer(({func})=> {
 
   const [business, setBusineess] = useState({
     name: "תכנות בקלות",
@@ -13,11 +15,12 @@ function EditBusinessData() {
 
   });
 
-  useEffect(()=>{localStorage.setItem(...business,business);},[business]);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    BusinessData(event);
+    func()
+    BusinessData(business);
     console.log(business);
   }
 
@@ -65,6 +68,6 @@ function EditBusinessData() {
   )
 
 
-}
+}))
 
 export default EditBusinessData

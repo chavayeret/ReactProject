@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { Observer } from "mobx-react";
 import AddService from "./AddService";
 
-function Service() {
+const Service=(Observer(({func})=>{ 
    const [service,setService]=useState({
      name:"",
      description:"",
@@ -9,11 +10,12 @@ function Service() {
      duration:60,
    });
   
-  useEffect(()=>{localStorage.setItem(service,Service),[Service]})
+  
 
  const handleSubmit = (event) => {
     event.preventDefault();
-    AddService();
+    func()
+    AddService(service);
     console.log(service);
  }
 
@@ -31,7 +33,7 @@ return (
     </label>
     <br />
     <label>
-      email:
+      description:
         <input type='text' name='description' value={service.description} onChange={handleChange} />
     </label>
     <br />
@@ -48,7 +50,7 @@ return (
     <button type='submit'>שמור</button>
   </form>
 </>
-)}
+)}))
   
   export default Service
   

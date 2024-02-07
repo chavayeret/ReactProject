@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { Observer } from "mobx-react";
 import AddMeeting from "./AddMeeting";
 
 
-function Meeting() {
+const Meeting=(Observer(({func})=>{ 
   const [meeting,setMeeting]=useState({
     serviceType:"",
     dateTime:"",
@@ -13,7 +14,8 @@ function Meeting() {
 
 const handleSubmit = (event) => {
     event.preventDefault();
-    AddMeeting()
+    func();
+    AddMeeting(meeting);
     console.log(meeting);
 }
 
@@ -32,7 +34,7 @@ const handleChange = (event) => {
             <br />
             <label>
                 dateTime:
-                <input type='text' name='email' value={meeting.dateTime} onChange={handleChange} />
+                <input type='datetimepicker' name='dateTime' value={meeting.dateTime} onChange={handleChange} />
             </label>
             <br />
             <label>
@@ -54,7 +56,7 @@ const handleChange = (event) => {
         </form>
     </>
   )
-}
+}))
   
   export default Meeting
   
