@@ -1,31 +1,20 @@
-import {useState } from "react";
-import {Observer } from "mobx-react";
-import BusinessData from "./BusinessData";
+import {useState} from "react";
+import {observer } from "mobx-react";
+import {Button} from "@mui/material";
+import dataStore from "../../data/dataStore";
 
-
-const EditBusinessData=(Observer(({func})=> {
-
-  const [business, setBusineess] = useState({
-    name: "תכנות בקלות",
-    address: "הרב יעקב לנדא 9 בני ברק",
-    phone: "052-7162595",
-    owner: "חוה ירט",
-    logo: "",
-    description: "מורה פרטית לשפות התכנות",
-
-  });
-
+const EditBusinessData=(observer(({onSave})=> {
   
-
+  const [business, setBusineess] = useState(dataStore.getBusinessData);
   const handleSubmit = (event) => {
     event.preventDefault();
-    func()
-    BusinessData(business);
+    dataStore.setBusinessData(business);
+    onSave(false)
     console.log(business);
   }
 
   const handleChange = (event) => {
-    const { name, value } = event.target.value;
+    const { name, value } = event.target;
     setBusineess({ ...business, [name]: value });
   }
 
@@ -33,36 +22,36 @@ const EditBusinessData=(Observer(({func})=> {
     <>
       <form onSubmit={handleSubmit}>
         <label>
-          name:
+          שם העסק:
           <input type='text' name='name' value={business.name} onChange={handleChange} />
         </label>
         <br />
         <label>
-          address:
+          כתובת:
           <input type='text' name='address' value={business.address} onChange={handleChange} />
         </label>
         <br />
         <label>
-          phone:
+          טלפון:
           <input type='text' name='phone' value={business.phone} onChange={handleChange} />
         </label>
         <br />
         <label>
-          owner:
+          בעל העסק:
           <input type='text' name='owner' value={business.owner} onChange={handleChange} />
         </label>
         <br />
         <label>
-          logo:
+          לוגו:
           <input type='text' name='logo' value={business.logo} onChange={handleChange} />
         </label>
         <br />
         <label>
-          description:
+          תיאור:
           <input type='text' name='description' value={business.description} onChange={handleChange} />
         </label>
         <br />
-        <button type='submit'>שמירה</button>
+        <Button type='submit'>שמור</Button>
       </form>
     </>
   )

@@ -1,56 +1,34 @@
-import { useState } from "react"
-import { Observer } from "mobx-react";
+import { useState } from "react";
+import { observer } from "mobx-react";
+import { Button } from "@mui/material";
 import AddService from "./AddService";
+import AdminHome from "../admin/AdminHome";
+import dataStore from "../../data/dataStore";
 
-const Service=(Observer(({func})=>{ 
-   const [service,setService]=useState({
-     name:"",
-     description:"",
-     price:0 ,
-     duration:60,
-   });
+const Service = observer(() => {
+   const [addMode,setaddMode]=useState(false);
+    const dataS = dataStore.services;
+    console.log("dataS",dataS);
+    //onSlist(false);
   
-  
-
- const handleSubmit = (event) => {
-    event.preventDefault();
-    func()
-    AddService(service);
-    console.log(service);
- }
-
- const handleChange = (event) => {
-    const { name, value } = event.target;
-    setService({ ...setService, [name]: value });
- }
-
-return (
-<>
- <form onSubmit={handleSubmit} >
-    <label>
-      name:
-        <input type='text' name='name' value={service.name} onChange={handleChange} />
-    </label>
-    <br />
-    <label>
-      description:
-        <input type='text' name='description' value={service.description} onChange={handleChange} />
-    </label>
-    <br />
-    <label>
-      price:
-        <input type='namber' name='price' value={service.price} onChange={handleChange} />
-    </label>
-    <br />
-    <label>
-      duration:
-        <input type='number' name='duration' value={service.duration} onChange={handleChange} />
-    </label>
-    <br />
-    <button type='submit'>שמור</button>
-  </form>
-</>
-)}))
+    return (
+     <>
+      <div >
+        <h3>השפה{dataStore.services.name}</h3>
+        <h3>תיאור{dataS.descripition}</h3>
+        <h3>המחיר{dataS.price}</h3>
+        <h3>משך הפגישה{dataS.duration}</h3>
+      </div>
+    
+      
+     { dataStore.isLogin && 
+       <div>
+         {addMode ? <AddService onAdd = {setaddMode} />:<Button onClick={() => setaddMode(true)}>הוסף שירות</Button>}
+       </div>
+       }
+      </>
+    )
+  })
   
   export default Service
   

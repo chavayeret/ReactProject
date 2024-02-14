@@ -1,62 +1,34 @@
-import { useState } from "react"
-import { Observer } from "mobx-react";
+import { observer } from "mobx-react";
+import dataStore from "../../data/dataStore";
 import AddMeeting from "./AddMeeting";
+import { useState } from "react";
+import { Button } from "@mui/material";
+import AdminHome from "../admin/AdminHome";
 
+const Meeting = (observer(()=>{
+  const [addM,setaddM] = useState(false)
+   const meet = dataStore.getMeetings();
+   console.log("meet", meet);
+   //onMlist(true);
 
-const Meeting=(Observer(({func})=>{ 
-  const [meeting,setMeeting]=useState({
-    serviceType:"",
-    dateTime:"",
-    clientName:"",
-    clientPhone:"",
-    clientEmail:"",
-  });
+    return (
+      <>
+      {dataStore.isLogin?
+      <div>
+        <h3>פגישות</h3>
+       <h3>{meet.serviceType}</h3>
+       <h3>{meet.dateTime}</h3>
+       <h3>{meet.clientName}</h3>
+      </div>
+      :
+      <div>
+       {addM ?<AddMeeting onaddM = {setaddM}/> :<Button onClick={()=>{setaddM(true)} }>לקביעת פגישה</Button>}
+      </div>
+      }
+      </>
+    )
 
-const handleSubmit = (event) => {
-    event.preventDefault();
-    func();
-    AddMeeting(meeting);
-    console.log(meeting);
-}
-
-const handleChange = (event) => {
-    const { name, value } = event.target;
-    setMeeting({ ...meeting, [name]: value });
-}
-
-   return (
-    <>
-        <form onSubmit={handleSubmit}>
-            <label>
-                serviceType:
-                <input type='text' name='serviceType' value={meeting.serviceType} onChange={handleChange} />
-            </label>
-            <br />
-            <label>
-                dateTime:
-                <input type='datetimepicker' name='dateTime' value={meeting.dateTime} onChange={handleChange} />
-            </label>
-            <br />
-            <label>
-                clientName:
-                <input type='text' name='clientName' value={meeting.clientName} onChange={handleChange} />
-            </label>
-            <br />
-            <label>
-                clientPhone:
-                <input type='text' name='clientPhone' value={meeting.clientPhone} onChange={handleChange} />
-            </label>
-            <br />
-            <label>
-              clientEmail:
-              <input type='email' name='clientEmail' value={meeting.clientEmail} onChange={handleChange} />
-          </label>
-          <br />
-            <button type='submit'>שמור</button>
-        </form>
-    </>
-  )
-}))
   
+}) )
   export default Meeting
   

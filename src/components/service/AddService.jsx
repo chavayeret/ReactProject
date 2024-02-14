@@ -1,31 +1,50 @@
+import { useState } from "react";
+import { observer } from "mobx-react";
+import { Button } from "@mui/material";
+import dataStore from "../../data/dataStore";
 
-import Service from "./Service"
-import ServicesList from "./ServicesList";
+const AddService = observer(({onAdd})=>{ 
+  const [service,setService]=useState(dataStore.getServices);
+  alert(dataStore.getServices())
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dataStore.addService(service);
+    onAdd(false)
+    console.log("service" ,service);
+ }
 
-async function AddService(service) {
-    try{
-      const response=await fetch('https://localhost:8787/service',{
-        method:'Post',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify({name:'value'})
-      });
-      const dataService=await response.json();
-      console.log(dataService);
-    }catch(error){
-      console.error('Error:',error);
-    }  
-  
-    return (
-      <>
-      dataStore.isLogin?   
-      <ServicesList/>
-      <button onClick={<Service/>}>הוסף שירות</button>:
-      <ServicesList/>;
-      </>
-    )
-  }
+ const handleChange = (event) => {
+    const { name, value } = event.target;
+    setService({ ...service, [name]: value });
+ }
+
+return (
+<>
+ <form onSubmit={handleSubmit} >
+    <label>
+      
+      <input type='text' name='name' value={service.name} onChange={handleChange} placeholder= "השרות"/>
+    </label>
+    <br />
+    <label>
+      תאור:
+        <input type='text' name='description' value={service.description} onChange={handleChange} />
+    </label>
+    <br />
+    <label>
+      מחיר:
+        <input type='namber' name='price' value={service.price} onChange={handleChange} />
+    </label>
+    <br />
+    <label>
+      משך הפגישה:
+        <input type='number' name='duration' value={service.duration} onChange={handleChange} />
+    </label>
+    <br />
+    <Button type='submit'>שמור</Button>
+  </form>
+</>
+)})
   
   export default AddService
   

@@ -1,29 +1,33 @@
-import EditBusinessData from "./BusinessData"
+import { useState } from "react";
+import EditBusinessData from "./EditBusinessData";
+import dataStore from "../../data/dataStore";
+import { observer } from "mobx-react";
+import { Button } from "@mui/material";
 
-async function BusinessData(business) {
-   
-    try{
-      const response=await fetch('https://localhost:8787/BusinessData',{
-        method:'Post',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify({name:'value'})
-      });
-       const data=await response.json();
-       console.log(data);
-    }catch(error){
-       console.error('Error:',error);
-    }
+ const BusinessData = observer(() => {
+  const [editMode, setEditMode] = useState(false);
+   const data = dataStore.getBusinessData;
+
     return (
-      <>
-      dataStore.isLogin?
-      {data}
-      <button onClick={<EditBusinessData/>}>עריכה</button>:
-      {data};
+    <>
+    <div>
+      <h1>{data.logo}</h1>
+      <h1>{data.name}</h1>
+      <h3>{data.description}</h3>
+      <h3>המורה {data.owner}</h3>
+      <h3>{data.address}</h3>
+      <h3>{data.phone}</h3>
+      </div>
+      
+      {dataStore.isLogin &&
+      <div>
+        
+        {editMode ? <EditBusinessData onSave={setEditMode} /> : <Button onClick={()=> setEditMode(true)}>ערוך</Button> }
+      </div>
+        }
       </>
     )
-}
+});
  
-  export default BusinessData
+export default BusinessData;
   

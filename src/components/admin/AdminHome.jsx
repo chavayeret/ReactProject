@@ -1,15 +1,17 @@
 import { Button } from "@mui/material"
 import BusinessData from "../businessData/BusinessData"
-import ServiceList from "../service/ServicesList"
-import MeetingList from "../meeting/MeetingList"
+import Service from "../service/Service"
+import Meeting from "../meeting/Meeting"
+import { useState } from "react"
 
 function AdminHome() {
-
+const [Mlist , setMlist]= useState(false);
+const [Slist , setSlist] = useState(false);
     return (
         <>
-            <BusinessData/>
-            <Button onClick={<ServiceList/>}>רשימת שירותים</Button>
-            <Button onClick={<MeetingList/>}>רשימת פגישות</Button>
+            <BusinessData />  
+            {Mlist ? <Service onMlist = {setMlist}/>:<Button onClick = {()=>{setMlist(true)}}>שירותים</Button>}
+            {Slist ? <Meeting onSlist = {setSlist}/>:<Button onClick={()=>{setSlist(true)}}>פגישות</Button>}  
         </>
     )
 }
