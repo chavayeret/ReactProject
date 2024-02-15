@@ -1,0 +1,18 @@
+.serv{
+    display:-webkit-inline-flex;
+    
+    border:1px solid rgb(35, 22, 184);
+    border-radius: 8px;
+    
+}
+.serv.h3{
+    color: rgb(148, 139, 156);
+
+}
+.Serv{
+    display:-moz-inline-box;
+}
+
+
+
+  

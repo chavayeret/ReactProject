@@ -23,6 +23,8 @@ class DataStore {
             }
         );
         this.init();
+        this.getServices();
+        this.getMeetings();
     }
 
     setIsLogin(status) {
@@ -83,10 +85,9 @@ class DataStore {
         const dataService=await response.json();
         console.log("dataService",dataService);
         this.services = dataService;
-        alert("שירות")
+        
     }catch(error){
        console.error('Error:',error);
-       alert("שירות!")
     }
     }
     
@@ -95,9 +96,8 @@ class DataStore {
         const response = await fetch('http://localhost:8787/Services');
         const dataservice = await response.json();
         console.log("dataservice" ,dataservice);
-        this.services =dataservice;
+        this.services = dataservice;
         console.log("services" ,this.services);
-        alert("service")
     }catch(error){
         console.error('Error:',error);
     }
@@ -130,7 +130,7 @@ class DataStore {
         alert("הפגישה נקבעה בהצלחה")
     }catch(error){
         console.error('Error:',error);
-        alert("התאריך תפוס")
+        alert("התאריך תפוס",this.meetings.status)
     }
     }
 }

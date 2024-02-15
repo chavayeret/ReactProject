@@ -19,7 +19,7 @@ import Meeting from './components/meeting/Meeting';
       element: <AdminPage />,
       children: [
          { path: "services", element: <Service/> },
-         { path: "meeting", element: <Meeting /> }
+         { path: "meetings", element: <Meeting /> }
       ],
       errorElement: <div><h1>Error!</h1><h2>404 Not define!</h2></div>,
     },

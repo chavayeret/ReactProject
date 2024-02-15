@@ -2,24 +2,26 @@ import { useState } from "react";
 import { observer } from "mobx-react";
 import { Button } from "@mui/material";
 import AddService from "./AddService";
-import AdminHome from "../admin/AdminHome";
+import "./ServicesList.css"
+import "../../index.css"
 import dataStore from "../../data/dataStore";
 
 const Service = observer(() => {
    const [addMode,setaddMode]=useState(false);
     const dataS = dataStore.services;
     console.log("dataS",dataS);
-    //onSlist(false);
+    
   
     return (
      <>
-      <div >
-        <h3>השפה{dataStore.services.name}</h3>
-        <h3>תיאור{dataS.descripition}</h3>
-        <h3>המחיר{dataS.price}</h3>
-        <h3>משך הפגישה{dataS.duration}</h3>
+      <div className="Serv">
+      {dataS.map((dataS,i)=> {return<div className="serv" key={i} >
+        <h3>שפת {dataS.name},</h3>
+        <h3>{dataS.description},</h3>
+        <h3>המחיר: {dataS.price} ש"ח,</h3>
+        <h3>משך השיעור: {dataS.duration} דקות.</h3>
+      </div>})}
       </div>
-    
       
      { dataStore.isLogin && 
        <div>

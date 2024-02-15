@@ -4,13 +4,12 @@ import { Button } from "@mui/material";
 import dataStore from "../../data/dataStore";
 
 const AddService = observer(({onAdd})=>{ 
-  const [service,setService]=useState(dataStore.getServices);
-  alert(dataStore.getServices())
+  const [service,setService]=useState(dataStore.getServices());
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(dataStore.sttus)
     dataStore.addService(service);
     onAdd(false)
-    console.log("service" ,service);
  }
 
  const handleChange = (event) => {
@@ -20,10 +19,10 @@ const AddService = observer(({onAdd})=>{
 
 return (
 <>
- <form onSubmit={handleSubmit} >
+ <form className="form" onSubmit={handleSubmit} >
     <label>
-      
-      <input type='text' name='name' value={service.name} onChange={handleChange} placeholder= "השרות"/>
+     השפה: 
+      <input type='text' name='name' value={service.name} onChange={handleChange}/>
     </label>
     <br />
     <label>

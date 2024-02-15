@@ -3,6 +3,7 @@ import EditBusinessData from "./EditBusinessData";
 import dataStore from "../../data/dataStore";
 import { observer } from "mobx-react";
 import { Button } from "@mui/material";
+import "../../index.css"
 
  const BusinessData = observer(() => {
   const [editMode, setEditMode] = useState(false);

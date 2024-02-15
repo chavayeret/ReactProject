@@ -2,6 +2,7 @@ import {useState} from "react";
 import {observer } from "mobx-react";
 import {Button} from "@mui/material";
 import dataStore from "../../data/dataStore";
+import "../../index.css";
 
 const EditBusinessData=(observer(({onSave})=> {
   
@@ -20,7 +21,7 @@ const EditBusinessData=(observer(({onSave})=> {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <label>
           שם העסק:
           <input type='text' name='name' value={business.name} onChange={handleChange} />

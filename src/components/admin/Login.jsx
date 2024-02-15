@@ -13,7 +13,7 @@ const Login = (observer(() => {
 
     return (
         <>
-             <p>!כניסה למשתמש מורשה בלבד</p>
+             <p>כניסה למשתמש מורשה בלבד!</p>
             <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="שם משתמש"/>
             <br/>
             <input type="text" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="סיסמא" />

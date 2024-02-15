@@ -10,8 +10,10 @@ const [Slist , setSlist] = useState(false);
     return (
         <>
             <BusinessData />  
-            {Mlist ? <Service onMlist = {setMlist}/>:<Button onClick = {()=>{setMlist(true)}}>שירותים</Button>}
-            {Slist ? <Meeting onSlist = {setSlist}/>:<Button onClick={()=>{setSlist(true)}}>פגישות</Button>}  
+            {Mlist ? <Service />:<Button onClick = {()=>{setMlist(true)}}>שירותים</Button>}
+            {Slist ? <Meeting onSlist = {setSlist}/>:<Button onClick={()=>{setSlist(true)}}>פגישות</Button>}
+            {Mlist && <Button onClick={()=>{setMlist(false)}}> סגור שירותים</Button>}  
+            {Slist && <Button onClick={()=>{setSlist(false)}}>סגור פגישות</Button>}
         </>
     )
 }
