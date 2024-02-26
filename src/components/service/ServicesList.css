@@ -1,7 +1,7 @@
 .serv{
-    display:-webkit-inline-flex;
+    display:flexbox;
     
-    border:1px solid rgb(35, 22, 184);
+    border:5px solid rgb(195, 14, 180);
     border-radius: 8px;
     
 }
@@ -10,7 +10,7 @@
 
 }
 .Serv{
-    display:-moz-inline-box;
+    display:flex;
 }
 
 

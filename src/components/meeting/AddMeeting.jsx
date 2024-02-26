@@ -1,79 +1,82 @@
-import { useState } from "react"
+import React,{ useState,useEffect } from "react";
 import { observer } from "mobx-react";
 import dataStore from "../../data/dataStore";
 import service from "../service/Service";
-import * as React from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
-import { Alert, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, IconButton } from "@mui/material";
-import  dayjs  from "dayjs";
+import { Alert, Button, } from "@mui/material";
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 
+const AddMeeting = observer(({ onaddM }) => {
 
-const AddMeeting =observer(({onaddM})=>{ 
-  const [meeting,setMeeting]=useState(dataStore.getMeetings);
+  const [meeting, setMeeting] = useState(dataStore.meetings);
 
-const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
+    console.log("dataStore",dataStore.meetings)
     event.preventDefault();
-    console.log(meeting)
     dataStore.addMeeting(meeting);
-    if(dataStore.meetings.status===200){
-    onaddM(false);}
-    console.log(meeting);
-}
+    if(dataStore.meetings){
+      onaddM(false);
+     // alert("הפגישה נקבעה בהצלחה!");
+   } 
+   else{
+       onaddM(true);
+      // alert("התאריך תפוס, נסה תאריך אחר!");
+       console.log(dataStore.meetings)
+   } 
+   }
+  
 
-const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target.value;
     setMeeting({ ...meeting, [name]: value });
-}
-const handleChangeTime = (event) =>{
-  const { name, value } = event.$d;
-  setMeeting({...meeting, [name]: value});
-}
-const Select = ()=>{
-  dataS.map((dataS,i)=> {return<div key={i}>{dataS.name}</div>})
-}
-   return (
+  }
+  const handleChangeTime = (event) => {
+    const { dateTime, value } = event;
+    setMeeting({ ...meeting, dateTime: event });
+  }
+  
+  return (
     <>
-   
-        <form onSubmit={handleSubmit}>
-            <label>
-                <input type='text'  name='serviceType' value={meeting.serviceType}onClick={()=>{Select}} onChange={handleChange} placeholder= "השפה"/>
-            </label>
-            <br />
-            <label>
-                <input type='text' name='clientName' value={meeting.clientName} onChange={handleChange} placeholder= "שם"/>
-            </label>
-            <br />
-            <label>
-                <input type='text' name='clientPhone' value={meeting.clientPhone} onChange={handleChange}placeholder= "טלפון" />
-            </label>
-            <br />
-            <label>
-              <input type='email' name='clientEmail' value={meeting.clientEmail} onChange={handleChange} placeholder= "כתובת מייל"/>
-          </label>
-          <br />
-         
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          <input type='text' name='serviceType'value= {meeting.serviceType}onChange={(e) => handleChange(e)} placeholder="השפה"  />
+        </label>
+        <br />
+        <label>
+          <input type='text' name='clientName' value={meeting.clientName} onChange={(e) => handleChange(e)} placeholder="שם" />
+        </label>
+        <br />
+        <label>
+          <input type='text' name='clientPhone' value={meeting.clientPhone} onChange={(e) => handleChange(e)} placeholder="טלפון" />
+        </label>
+        <br />
+        <label>
+          <input type='email' name='clientEmail' value={meeting.clientEmail} onChange={(e) => handleChange(e)} placeholder="כתובת מייל" />
+        </label>
+        <br />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={['DateTimePicker']}>
-           <DateTimePicker
-               label="תאריך ושעה"
-               viewRenderers={{
-                  hours: renderTimeViewClock,
-                  minutes: renderTimeViewClock,
-                  seconds: renderTimeViewClock,
-          }} name='dateTime' value={meeting.dateTime} onChange={handleChangeTime} 
-             />
-             </DemoContainer>
-      </LocalizationProvider>
-      <Button type='submit'>שמור</Button>
-        </form>
+            <DateTimePicker
+              label="תאריך ושעה"
+              viewRenderers={{
+                hours: renderTimeViewClock,
+                minutes: renderTimeViewClock,
+                seconds: renderTimeViewClock,
+              }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e.$d)}
+            />
+        </LocalizationProvider>
+        <br />
+        <Button type='submit'>שמור</Button>
+      </form>
     </>
   )
 })
-  
-  export default AddMeeting
-  
+
+export default AddMeeting

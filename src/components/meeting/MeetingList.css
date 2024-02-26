@@ -1,1 +1,24 @@
-
+.green{
+    display:flexbox;
+    
+    border:5px solid rgb(11, 169, 53);
+    border-radius: 8px;  
+}
+.red{
+    display:flexbox;
+    
+    border:5px solid rgb(224, 13, 13);
+    border-radius: 8px;  
+}
+.orange{
+    display:flexbox;
+    
+    border:5px solid rgb(230, 132, 21);
+    border-radius: 8px;  
+}
+.black{
+    display:none;
+}
+.Meet{
+    display: flex;
+}

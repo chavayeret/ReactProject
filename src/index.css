@@ -27,7 +27,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -66,7 +66,7 @@ button:focus-visible {
   border-radius: 8px; 
 }
 .form{
-  color: #c916a5;
+  color: #f707c7;
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import dataStore from "./dataStore";
 
 export async function CheckLogin(name, password) {
