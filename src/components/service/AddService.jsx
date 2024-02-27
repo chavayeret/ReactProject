@@ -12,7 +12,7 @@ const AddService = observer(({onAdd})=>{
  }
 
  const handleChange = (event) => {
-    const { name, value } = event.target.value;
+    const { name, value } = event.target;
     setService({ ...service, [name]: value });
  }
 

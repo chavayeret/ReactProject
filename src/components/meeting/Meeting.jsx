@@ -64,9 +64,10 @@ const Meeting = (observer(() => {
        
         <div className="Meet"> 
           {meet.map((meet, i) => {return <div className = {meetcolor(meet.dateTime)} key={i}>
-              <h3>{i}</h3>
+              <h3>{i+1}</h3>
               <h3>נקבעה פגישה בשפת {meet.serviceType}</h3>
-              <h3>בתאריך {meet.dateTime} </h3>
+              <h3>בתאריך {new Date(meet.dateTime).getDate()}/{new Date(meet.dateTime).getMonth()+1}/{new Date(meet.dateTime).getFullYear()} </h3>
+              <h3>בשעה{new Date(meet.dateTime).getHours()}:{new Date(meet.dateTime).getMinutes()}</h3>
               <h3>עם {meet.clientName}</h3>
               <h3>{meet.clientPhone}</h3>
               <h3>{meet.clientEmail}</h3>

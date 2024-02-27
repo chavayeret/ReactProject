@@ -23,22 +23,19 @@ const AddMeeting = observer(({ onaddM }) => {
     dataStore.addMeeting(meeting);
     if(dataStore.meetings){
       onaddM(false);
-     // alert("הפגישה נקבעה בהצלחה!");
    } 
    else{
        onaddM(true);
-      // alert("התאריך תפוס, נסה תאריך אחר!");
-       console.log(dataStore.meetings)
    } 
    }
   
 
   const handleChange = (event) => {
-    const { name, value } = event.target.value;
+    const { name, value } = event.target;
     setMeeting({ ...meeting, [name]: value });
   }
   const handleChangeTime = (event) => {
-    const { dateTime, value } = event;
+    const { dateTime, value } = event.$d;
     setMeeting({ ...meeting, dateTime: event });
   }
   
@@ -69,7 +66,7 @@ const AddMeeting = observer(({ onaddM }) => {
                 hours: renderTimeViewClock,
                 minutes: renderTimeViewClock,
                 seconds: renderTimeViewClock,
-              }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e.$d)}
+              }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e)}
             />
         </LocalizationProvider>
         <br />

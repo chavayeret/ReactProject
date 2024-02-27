@@ -36,7 +36,7 @@ class DataStore {
         try {
             const response = await fetch('http://localhost:8787/BusinessData');
             const data = await response.json();
-            if(!data){
+            if (!data){
                 this.setBusinessData({name: "תכנות בקלות",
                 address: "הרב יעקב לנדא 9 בני ברק",
                 phone: "052-7162595",
@@ -106,10 +106,11 @@ class DataStore {
                 body: JSON.stringify(obj)
             });
             const datameeting = await response.json();
-            this.meetings = datameeting;
-             
+            this.meetings =await datameeting;
+            
         } catch (error) {
             console.error("Error",error);
+            alert("הפגישה נקבעה בהצלחה!");
         }
     }
 

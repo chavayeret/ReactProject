@@ -16,7 +16,7 @@ const EditBusinessData = (observer(({ onSave }) => {
   }
 
   const handleChange = (event) => {
-    const { name, value } = event.target.value;
+    const { name, value } = event.target;
     setBusiness({ ...business, [name]: value });
   }
 
