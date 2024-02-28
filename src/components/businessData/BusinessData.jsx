@@ -7,7 +7,7 @@ import "../../index.css"
 
 const BusinessData = observer(() => {
   const [editMode, setEditMode] = useState(false);
-  
+
   const data = dataStore.businessData;
 
   return (

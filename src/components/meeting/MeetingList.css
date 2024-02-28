@@ -21,4 +21,5 @@
 }
 .Meet{
     display: flex;
+    align-items:normal;
 }

@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import dataStore from "../../data/dataStore";
 import service from "../service/Service";
@@ -18,33 +18,32 @@ const AddMeeting = observer(({ onaddM }) => {
   const [meeting, setMeeting] = useState(dataStore.meetings);
 
   const handleSubmit = (event) => {
-    console.log("dataStore",dataStore.meetings)
     event.preventDefault();
     dataStore.addMeeting(meeting);
-    if(dataStore.meetings){
+    if (dataStore.meetings) {
       onaddM(false);
-   } 
-   else{
-       onaddM(true);
-   } 
-   }
-  
+    }
+    else {
+      onaddM(true);
+    }
+  }
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setMeeting({ ...meeting, [name]: value });
   }
   const handleChangeTime = (event) => {
-    const { dateTime, value } = event.$d;
+    const { dateTime, value } = event;
     setMeeting({ ...meeting, dateTime: event });
   }
-  
+
   return (
     <>
 
       <form onSubmit={handleSubmit}>
         <label>
-          <input type='text' name='serviceType'value= {meeting.serviceType}onChange={(e) => handleChange(e)} placeholder="השפה"  />
+          <input type='text' name='serviceType' value={meeting.serviceType} onChange={(e) => handleChange(e)} placeholder="השפה" />
         </label>
         <br />
         <label>
@@ -60,14 +59,14 @@ const AddMeeting = observer(({ onaddM }) => {
         </label>
         <br />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateTimePicker
-              label="תאריך ושעה"
-              viewRenderers={{
-                hours: renderTimeViewClock,
-                minutes: renderTimeViewClock,
-                seconds: renderTimeViewClock,
-              }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e)}
-            />
+          <DateTimePicker
+            label="תאריך ושעה"
+            viewRenderers={{
+              hours: renderTimeViewClock,
+              minutes: renderTimeViewClock,
+              seconds: renderTimeViewClock,
+            }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e)}
+          />
         </LocalizationProvider>
         <br />
         <Button type='submit'>שמור</Button>

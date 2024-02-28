@@ -12,7 +12,6 @@ const EditBusinessData = (observer(({ onSave }) => {
     event.preventDefault();
     dataStore.setBusinessData(business);
     onSave(false)
-    console.log(business);
   }
 
   const handleChange = (event) => {

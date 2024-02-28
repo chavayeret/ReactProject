@@ -8,8 +8,9 @@ import "../../index.css"
 
 const Service = observer(() => {
   const [addMode, setaddMode] = useState(false);
+
   const dataS = dataStore.services;
-  
+
   return (
     <>
       <div className="Serv">
