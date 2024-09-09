@@ -37,7 +37,7 @@ const Meeting = observer(() => {
       }
       else {
         if (today.getMonth() < meetdate.getMonth()) {
-          if (meetdate.getMonth() - today.getMonth() == 1 && (today.getDate() + 7) % 30 >= meetdate.getDate()) {
+          if (meetdate.getMonth() - today.getMonth() == 1 && today.getDate()>23 && (today.getDate() + 7) % 30 >= meetdate.getDate()) {
             color = "orange";
           }
           else {

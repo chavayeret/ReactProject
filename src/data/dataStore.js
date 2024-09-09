@@ -36,12 +36,12 @@ class DataStore {
         try {
             const response = await fetch('http://localhost:8787/BusinessData');
             const data = await response.json();
-            if (!data){
+            if (!data.JSON ){
                 this.setBusinessData({name: "תכנות בקלות",
                 address: "הרב יעקב לנדא 9 בני ברק",
                 phone: "052-7162595",
                 owner: "חוה ירט",
-                logo: "",
+                logo: "",       
                 description: "מורה פרטית לשפות התכנות",
                 })
             }
@@ -106,11 +106,21 @@ class DataStore {
                 body: JSON.stringify(obj)
             });
             const datameeting = await response.json();
-            this.meetings =await datameeting;
+            if(response.status == 200){
+                 this.meetings =await datameeting;
+                 alert("הפגישה נקבעה בהצלחה!");
+            }
+            else{
+                
+                alert("לא ניתן לקבוע את הפגישה בשעה המבוקשת, נסו שנית!")
+            }
+        
             
         } catch (error) {
+            if(error.response){
             console.error("Error",error);
-            alert("הפגישה נקבעה בהצלחה!");
+            alert("לא ניתן לקבוע את הפגישה בשעה המבוקשת, נסו שנית!")
+            }
         }
     }
 
