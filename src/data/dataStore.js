@@ -78,9 +78,8 @@ class DataStore {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
-            });
-            const dataService = await response.json();
-            this.services = dataService;
+            }); 
+            this.services = await response.json();
         } catch (error) {
             console.error('Error:', error);
         }
@@ -89,8 +88,8 @@ class DataStore {
     async getServices() {
         try {
             const response = await fetch('http://localhost:8787/Services');
-            const dataservice = await response.json();
-            this.services = await dataservice;
+            
+            this.services = await response.json();
         } catch (error) {
             console.error('Error:', error);
         }
@@ -105,13 +104,14 @@ class DataStore {
                 },
                 body: JSON.stringify(obj)
             });
-            const datameeting = await response.json();
-            if(response.status == 200){
-                 this.meetings =await datameeting;
+             
+            this.meetings = await response.json();
+            if(this.meetings.status === 200){
+                console.log("datameeting" ,this.meetings)  
                  alert("הפגישה נקבעה בהצלחה!");
             }
             else{
-                
+                console.log("datameetingelse" ,this.meetings)  
                 alert("לא ניתן לקבוע את הפגישה בשעה המבוקשת, נסו שנית!")
             }
         
@@ -126,9 +126,8 @@ class DataStore {
 
     async getMeetings() {
         try {
-            const response = await fetch('http://localhost:8787/appointments');
-            const dataMeeting = await response.json();
-            this.meetings = dataMeeting;
+            const response = await fetch('http://localhost:8787/appointments'); 
+            this.meetings = await response.json();
             this.meetings.sort((a,b)=>new Date(a.dateTime)-new Date(b.dateTime));
 
         } catch (error) {

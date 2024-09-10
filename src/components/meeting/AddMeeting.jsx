@@ -43,19 +43,19 @@ const AddMeeting = observer(({ onaddM }) => {
 
       <form onSubmit={handleSubmit}>
         <label>
-          <input type='text' name='serviceType' value={meeting.serviceType} onChange={(e) => handleChange(e)} placeholder="השפה" />
+          <input type='text' name='serviceType' value={meeting.serviceType||""} onChange={(e) => handleChange(e)} placeholder="השפה" />
         </label>
         <br />
         <label>
-          <input type='text' name='clientName' value={meeting.clientName} onChange={(e) => handleChange(e)} placeholder="שם" />
+          <input type='text' name='clientName' value={meeting.clientName||""} onChange={(e) => handleChange(e)} placeholder="שם" />
         </label>
         <br />
         <label>
-          <input type='text' name='clientPhone' value={meeting.clientPhone} onChange={(e) => handleChange(e)} placeholder="טלפון" />
+          <input type='text' name='clientPhone' value={meeting.clientPhone||""} onChange={(e) => handleChange(e)} placeholder="טלפון" />
         </label>
         <br />
         <label>
-          <input type='email' name='clientEmail' value={meeting.clientEmail} onChange={(e) => handleChange(e)} placeholder="כתובת מייל" />
+          <input type='email' name='clientEmail' value={meeting.clientEmail||""} onChange={(e) => handleChange(e)} placeholder="כתובת מייל" />
         </label>
         <br />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -65,7 +65,7 @@ const AddMeeting = observer(({ onaddM }) => {
               hours: renderTimeViewClock,
               minutes: renderTimeViewClock,
               seconds: renderTimeViewClock,
-            }} name='dateTime' value={meeting.dateTime} onChange={(e) => handleChangeTime(e)}
+            }} name='dateTime' value={meeting.dateTime||""} onChange={(e) => handleChangeTime(e)}
           />
         </LocalizationProvider>
         <br />

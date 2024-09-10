@@ -65,7 +65,8 @@ const Meeting = observer(() => {
       {dataStore.isLogin ?
 
         <div className="Meet">
-          {meet.map((meet, i) => {
+          {
+          meet.map((meet, i) => {
             return <div className={meetcolor(meet.dateTime)} key={i}>
               <h3>{i + 1}</h3>
               <h3>נקבעה פגישה בשפת {meet.serviceType}</h3>

@@ -20,19 +20,19 @@ const AddService = observer(({ onAdd }) => {
     <>
       <form className="form" onSubmit={handleSubmit} >
         <label>
-          <input type='text' name='name' value={service.name} onChange={handleChange} placeholder="השפה" />
+          <input type='text' name='name' value={service.name||""} onChange={handleChange} placeholder="השפה" />
         </label>
         <br />
         <label>
-          <input type='text' name='description' value={service.description} onChange={handleChange} placeholder="תאור" />
+          <input type='text' name='description' value={service.description||""} onChange={handleChange} placeholder="תאור" />
         </label>
         <br />
         <label>
-          <input type='namber' name='price' value={service.price} onChange={handleChange} placeholder="מחיר" />
+          <input type='namber' name='price' value={service.price||""} onChange={handleChange} placeholder="מחיר" />
         </label>
         <br />
         <label>
-          <input type='number' name='duration' value={service.duration} onChange={handleChange} placeholder="משך פגישה" />
+          <input type='number' name='duration' value={service.duration||""} onChange={handleChange} placeholder="משך פגישה" />
         </label>
         <br />
         <Button type='submit'>שמור</Button>
